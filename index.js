@@ -25,20 +25,14 @@ program
 )
 
 const run = (port) => {
-  shell.exec(`
-    cd ${serverPath}
-    node ./bin.js start ${port}
-    `, function(error, stdout, stderr) {
+  shell.exec(`cd ${serverPath} && node ./bin.js start ${port}`, function(error, stdout, stderr) {
       console.log(error);
   })
 }
 
 // web端运行
 const runWeb = (port) => {
-  shell.exec(`
-    cd ${clientPath}
-    node ./bin.js start ${port}
-    `, function(error, stdout, stderr) {
+  shell.exec(`cd ${clientPath} && node ./bin.js start ${port}`, function(error, stdout, stderr) {
       console.log(error);
   })
 }
@@ -74,12 +68,8 @@ program.command('dev [port]')
 program
   .argument('[other...]')
   .action((other) => {
-    // console.log(other, 'other');
     const rest = other.join(' ')
-    shell.exec(`
-      cd ${serverPath}
-      node ./bin.js ${rest}
-      `, function(error, stdout, stderr) {
+    shell.exec(`cd ${serverPath} && node ./bin.js ${rest}`, function(error, stdout, stderr) {
         if (error) {
           console.log(error, stdout, stderr);
         }
