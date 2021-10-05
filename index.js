@@ -25,7 +25,7 @@ program
 )
 
 const run = (port) => {
-  shell.exec(`cd ${serverPath} && node ./bin.js start ${port}`, function(error, stdout, stderr) {
+  shell.exec(`node ${serverPath}/bin.js start ${port}`, function(error, stdout, stderr) {
       console.log(error);
   })
 }
@@ -69,7 +69,7 @@ program
   .argument('[other...]')
   .action((other) => {
     const rest = other.join(' ')
-    shell.exec(`cd ${serverPath} && node ./bin.js ${rest}`, function(error, stdout, stderr) {
+    shell.exec(`node ${serverPath}/bin.js ${rest}`, function(error, stdout, stderr) {
         if (error) {
           console.log(error, stdout, stderr);
         }

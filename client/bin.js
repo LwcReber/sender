@@ -5,9 +5,7 @@ program.command('start <port>')
 	.action((port = 8989) => {
     console.log(port, 'port')
     process.env.SERVER_PORT = port
-    shell.exec(`
-    npm run serve
-    `, function(error, stdout, stderr) {
+    shell.exec(`npm run serve`, function(error, stdout, stderr) {
       console.log(error);
     })
 	})
