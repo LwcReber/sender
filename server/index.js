@@ -33,6 +33,25 @@ app.post('/api/data',function(request, response){
   })
  });
 
+// 添加数据到复制区中
+app.post('/api/add',function(request, response){
+  var content = request.body.content;
+  console.log('---------接收内容-----------');
+  console.log(content);
+  addData(content)
+  console.log('-----------end--------------');
+  response.json({
+    resCode: 200
+  })
+ });
+
+app.delete('/api/data', function(request, response){
+  var content = request.body.content;
+  removeData(content)
+  response.json({
+    resCode: 200
+  })
+})
 
 // 添加列表数据
 const addData = (content) => {
